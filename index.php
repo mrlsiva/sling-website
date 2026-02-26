@@ -35,7 +35,20 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
     <!-- Bootstrap CSS File -->
-    <link href="sling-assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Fallback to local Bootstrap CSS -->
+    <script>
+    if (typeof(window.getComputedStyle) !== 'undefined') {
+        var bootstrapTest = document.createElement('div');
+        bootstrapTest.className = 'container';
+        document.body.appendChild(bootstrapTest);
+        if (window.getComputedStyle(bootstrapTest).width.indexOf('px') === -1) {
+            document.write('<link href="sling-assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">');
+        }
+        document.body.removeChild(bootstrapTest);
+    }
+    </script>
 
     <!-- Libraries CSS Files -->
     <link href="sling-assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -64,12 +77,12 @@
     Top Bar
   ============================-->
     <section id="topbar" class="d-none d-lg-block">
-        <div class="container clearfix">
-            <div class="contact-info float-left">
+        <div class="container d-flex">
+            <div class="contact-info float-left col-12 col-md-6">
                 <i class="fa fa-envelope-o"></i> <a href="mailto:slinggroups@gmail.com">slinggroups@gmail.com</a>
                 <i class="fa fa-phone"></i> +91 9994090424
             </div>
-            <div class="social-links float-right">
+            <div class="social-links float-right col-12 col-md-6 text-md-end">
                 <a href="https://twitter.com/SlingSoftware" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a>
                 <a href="https://www.facebook.com/pg/Slingsoftwaresolutions" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
                 <a href="#" target="_blank" class="instagram"><i class="fa fa-instagram"></i></a>
@@ -425,9 +438,27 @@
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
     <!-- JavaScript Libraries -->
-    <script src="sling-assets/lib/jquery/jquery.min.js"></script>
-    <script src="sling-assets/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="sling-assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.4.0.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Suppress jQuery Migrate warnings in production -->
+    <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        jQuery.migrateMute = true;
+    }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Fallback to local files if CDN fails -->
+    <script>
+    if (typeof jQuery == 'undefined') {
+        document.write('<script src="sling-assets/lib/jquery/jquery.min.js"><\/script>');
+        document.write('<script src="sling-assets/lib/jquery/jquery-migrate.min.js"><\/script>');
+        document.write('<script src="sling-assets/lib/bootstrap/js/bootstrap.bundle.min.js"><\/script>');
+    }
+    </script>
+    
     <script src="sling-assets/lib/easing/easing.min.js"></script>
     <script src="sling-assets/lib/superfish/hoverIntent.js"></script>
     <script src="sling-assets/lib/superfish/superfish.min.js"></script>
@@ -442,46 +473,57 @@
     <!-- Template Main Javascript File -->
     <script src="sling-assets/js/main.js"></script>
 
-    <!-- Start of Async Callbell Code -->
+    <!-- Start of Conditional Callbell Code -->
     <script>
-        window.callbellSettings = {
-            token: "sqUhtGE5tjjuaBWvDKXCWnnN"
-        };
-    </script>
-    <script>
-        (function() {
-            var w = window;
-            var ic = w.callbell;
-            if (typeof ic === "function") {
-                ic('reattach_activator');
-                ic('update', callbellSettings);
-            } else {
-                var d = document;
-                var i = function() {
-                    i.c(arguments)
-                };
-                i.q = [];
-                i.c = function(args) {
-                    i.q.push(args)
-                };
-                w.Callbell = i;
-                var l = function() {
-                    var s = d.createElement('script');
-                    s.type = 'text/javascript';
-                    s.async = true;
-                    s.src = 'https://dash.callbell.eu/include/' + window.callbellSettings.token + '.js';
-                    var x = d.getElementsByTagName('script')[0];
-                    x.parentNode.insertBefore(s, x);
-                };
-                if (w.attachEvent) {
-                    w.attachEvent('onload', l);
+        // Only load Callbell on production domain to avoid CORS issues on localhost
+        var isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !window.location.hostname.includes('.local');
+        
+        if (isProduction) {
+            window.callbellSettings = {
+                token: "sqUhtGE5tjjuaBWvDKXCWnnN"
+            };
+
+            (function() {
+                var w = window;
+                var ic = w.callbell;
+                if (typeof ic === "function") {
+                    ic('reattach_activator');
+                    ic('update', callbellSettings);
                 } else {
-                    w.addEventListener('load', l, false);
+                    var d = document;
+                    var i = function() {
+                        i.c(arguments)
+                    };
+                    i.q = [];
+                    i.c = function(args) {
+                        i.q.push(args)
+                    };
+                    w.Callbell = i;
+                    
+                    // Defer Callbell loading to avoid preload warnings
+                    setTimeout(function() {
+                        var s = d.createElement('script');
+                        s.type = 'text/javascript';
+                        s.async = true;
+                        s.src = 'https://dash.callbell.eu/include/' + window.callbellSettings.token + '.js';
+                        s.onerror = function() {
+                            console.warn('Callbell widget failed to load');
+                        };
+                        var x = d.getElementsByTagName('script')[0];
+                        x.parentNode.insertBefore(s, x);
+                    }, 2000); // Delay by 2 seconds to avoid preload warnings
                 }
+            })();
+        } else {
+            console.log('Callbell widget disabled on localhost to prevent CORS errors');
+            
+            // Optional: Add a development notice (only visible on localhost)
+            if (console && console.info) {
+                console.info('💬 Live chat is disabled on localhost. Contact: slinggroups@gmail.com or +91 9994090424');
             }
-        })()
+        }
     </script>
-    <!-- End of Async Callbell Code -->
+    <!-- End of Conditional Callbell Code -->
 
     <!-- Enquiry Form JavaScript -->
     <script>

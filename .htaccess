@@ -1,0 +1,52 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# Allow access to CSS, JS, image files, and fonts without redirects
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|webp|ico|svg|woff|woff2|ttf|eot|otf)$ [NC]
+RewriteRule ^ - [L]
+
+# Prevent hotlinking of images and assets (optional security measure)
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?slinggroups\.in [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?localhost [NC]
+RewriteCond %{REQUEST_URI} \.(jpg|jpeg|png|gif|webp|css|js)$ [NC]
+RewriteRule .* - [F,L]
+
+# Enable compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Set proper MIME types for webp images
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+</IfModule>
+
+# Cache static files for better performance
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
