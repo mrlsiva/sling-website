@@ -14,6 +14,7 @@ foreach($result as $row)
 {
  $file_array = explode(".", $row["image_name"]);
  $output['image_name'] = $file_array[0];
+ $output['full_image_name'] = $row["image_name"]; // Full name with extension for preview
  $output['image_description'] = $row["image_description"];
  $output['price'] = $row["price"];
  $output['ProductName'] = $row["ProductName"];

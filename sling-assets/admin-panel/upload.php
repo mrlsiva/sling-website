@@ -10,7 +10,21 @@ if(count($_FILES["file"]["name"]) > 0)
   $file_name = $_FILES["file"]["name"][$count];
   $tmp_name = $_FILES["file"]['tmp_name'][$count];
   $file_array = explode(".", $file_name);
-  $file_extension = end($file_array);
+  $file_extension = strtolower(end($file_array));
+  
+  // Validate file extension
+  $allowed_extensions = array("jpg", "jpeg", "png", "gif", "webp");
+  if(!in_array($file_extension, $allowed_extensions))
+  {
+   continue; // Skip this file if invalid extension
+  }
+  
+  // Validate file size (2MB limit)
+  if($_FILES["file"]["size"][$count] > 2000000)
+  {
+   continue; // Skip this file if too large
+  }
+  
   if(file_already_uploaded($file_name, $connect))
   {
    $file_name = $file_array[0] . '-'. rand() . '.' . $file_extension;

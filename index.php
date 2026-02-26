@@ -122,30 +122,78 @@
     <!--==========================
     Intro Section
   ============================-->
-    <section id="intro">
+    <section id="intro-container">
+        <div id="intro">
+            <div class="intro-content">
+                <!--      <h2>Making <span>your ideas</span><br>happen!</h2>-->
+                <!--      <h2>We Just <span>Make Your Dream</span><br>Real!</h2>-->
+                <h2>We Make Your <span>e - dreams</span><br>Live!</h2>
+                <div>
+                    <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            <a href="#portfolio" class="btn-projects scrollto">Our Projects</a> -->
+                    <!-- <a target="_blank" class="btn-get-started scrollto" href="https://api.whatsapp.com/send?phone=+917402064183" alt="whatsapp icon"><i class="fa fa-whatsapp" aria-hidden="true"></i> Suguna</a>
+                    <a target="_blank" class="btn-get-started scrollto" href="https://api.whatsapp.com/send?phone=+919994090424" alt="whatsapp icon"><i class="fa fa-whatsapp" aria-hidden="true"> Siva</i></a> -->
+                </div>
+            </div>
 
-        <div class="intro-content">
-            <!--      <h2>Making <span>your ideas</span><br>happen!</h2>-->
-            <!--      <h2>We Just <span>Make Your Dream</span><br>Real!</h2>-->
-            <h2>We Make Your <span>e - dreams</span><br>Live!</h2>
-            <div>
-                <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
-        <a href="#portfolio" class="btn-projects scrollto">Our Projects</a> -->
-                <!-- <a target="_blank" class="btn-get-started scrollto" href="https://api.whatsapp.com/send?phone=+917402064183" alt="whatsapp icon"><i class="fa fa-whatsapp" aria-hidden="true"></i> Suguna</a>
-                <a target="_blank" class="btn-get-started scrollto" href="https://api.whatsapp.com/send?phone=+919994090424" alt="whatsapp icon"><i class="fa fa-whatsapp" aria-hidden="true"> Siva</i></a> -->
+            <div id="intro-carousel" class="owl-carousel">
+                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/1.jpg');"></div>
+                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/2.jpg');"></div>
+                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/3.jpg');"></div>
+                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/4.jpg');"></div>
+                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/5.jpg');"></div>
             </div>
         </div>
-
-        <div id="intro-carousel" class="owl-carousel">
-            <div class="item" style="background-image: url('sling-assets/img/intro-carousel/1.jpg');"></div>
-            <div class="item" style="background-image: url('sling-assets/img/intro-carousel/2.jpg');"></div>
-            <div class="item" style="background-image: url('sling-assets/img/intro-carousel/3.jpg');"></div>
-            <div class="item" style="background-image: url('sling-assets/img/intro-carousel/4.jpg');"></div>
-            <div class="item" style="background-image: url('sling-assets/img/intro-carousel/5.jpg');"></div>
+        
+        <!-- Enquiry Form Section -->
+        <div id="enquiry-form">
+            <div class="enquiry-container">
+                <h3>Professional Enquiry</h3>
+                <p class="enquiry-subtitle">Get In Touch With Our Experts</p>
+                
+                <form id="enquiryForm" class="enquiry-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Work Email *" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number *" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="company" name="company" placeholder="Company Name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Select Service *</option>
+                            <option value="UI-UX Design">UI-UX Design</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="Mobile Apps">Mobile Apps</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="Custom Software">Custom Software</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Project Details *" rows="3" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fa fa-paper-plane"></i> Send Enquiry
+                    </button>
+                </form>
+               
+            </div>
         </div>
-
     </section>
-    <!-- #intro -->
+    <!-- #intro-container -->
 
     <main id="main">
 
@@ -434,6 +482,45 @@
         })()
     </script>
     <!-- End of Async Callbell Code -->
+
+    <!-- Enquiry Form JavaScript -->
+    <script>
+    $(document).ready(function() {
+        $('#enquiryForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            var submitBtn = $(this).find('button[type="submit"]');
+            var originalBtnText = submitBtn.html();
+            
+            // Show loading state
+            submitBtn.html('<i class="fa fa-spinner fa-spin"></i> Sending...').prop('disabled', true);
+            
+            $.ajax({
+                url: 'sling-assets/admin-panel/enquiry_handler.php',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Show success message
+                        alert('Thank you for your enquiry! We will get back to you soon.');
+                        // Reset form
+                        $('#enquiryForm')[0].reset();
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function() {
+                    alert('Sorry, there was an error sending your enquiry. Please try again or contact us directly.');
+                },
+                complete: function() {
+                    // Reset button
+                    submitBtn.html(originalBtnText).prop('disabled', false);
+                }
+            });
+        });
+    });
+    </script>
 
 
 </body>

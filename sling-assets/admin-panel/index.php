@@ -22,11 +22,20 @@
  <body>
   <br />
   <div class="container">
-   <h3 align="center">My Works</h3>
+   <div class="row">
+     <div class="col-md-8">
+       <h3 align="center">My Works</h3>
+     </div>
+     <div class="col-md-4">
+       <a href="../../customer-enquiry.php" class="btn btn-success btn-block" style="margin-top: 10px;">
+         <i class="glyphicon glyphicon-envelope"></i> View Customer Enquiries
+       </a>
+     </div>
+   </div>
    <br />
    <div align="center">
     <input type="file" name="multiple_files" id="multiple_files" multiple />
-    <!-- <span class="text-muted">Only .jpg, png, .gif file allowed</span> -->
+    <!-- <span class="text-muted">Only .jpg, .jpeg, .png, .gif, .webp files allowed</span> -->
     <span id="error_multiple_files"></span>
    </div>
    <br />
@@ -39,12 +48,16 @@
 <div id="imageModal" class="modal fade" role="dialog">
  <div class="modal-dialog">
   <div class="modal-content">
-   <form method="POST" id="edit_image_form">
+   <form method="POST" id="edit_image_form" enctype="multipart/form-data">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
      <h4 class="modal-title">Edit Project</h4>
     </div>
     <div class="modal-body">
+     <div class="form-group">
+      <label>Current Image</label><br>
+      <img id="current_image_preview" src="" alt="Current Image" style="max-width: 200px; max-height: 150px;" class="img-thumbnail">
+     </div>
      <div class="form-group">
       <label>Image Name</label>
       <input type="text" name="image_name" id="image_name" class="form-control" />
@@ -60,6 +73,15 @@
      <div class="form-group">
       <label>Project Description</label>
       <input type="text" name="image_description" id="image_description" class="form-control" />
+     </div>
+     <div class="form-group">
+      <label>Replace Image (Optional)</label>
+      <input type="file" name="replacement_image" id="replacement_image" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" />
+      <small class="text-muted">Leave blank to keep current image. Only .jpg, .jpeg, .png, .gif, .webp files allowed.</small>
+      <div id="new_image_preview" style="margin-top: 10px; display: none;">
+        <strong>New Image Preview:</strong><br>
+        <img id="new_image_preview_img" src="" alt="New Image Preview" style="max-width: 200px; max-height: 150px;" class="img-thumbnail">
+      </div>
      </div>
      
 
@@ -104,7 +126,7 @@ $(document).ready(function(){
    {
     var name = document.getElementById("multiple_files").files[i].name;
     var ext = name.split('.').pop().toLowerCase();
-    if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
+    if(jQuery.inArray(ext, ['gif','png','jpg','jpeg','webp']) == -1) 
     {
      error_images += '<p>Invalid '+i+' File</p>';
     }
@@ -163,6 +185,10 @@ $(document).ready(function(){
     $('#image_description').val(data.image_description);
     $('#price').val(data.price);
     $('#ProductName').val(data.ProductName);
+    $('#current_image_preview').attr('src', 'files/' + data.full_image_name);
+    // Clear replacement image input and preview
+    $('#replacement_image').val('');
+    $('#new_image_preview').hide();
     
    }
   });
@@ -184,6 +210,40 @@ $(document).ready(function(){
    });
   }
  }); 
+ 
+ // Preview replacement image
+ $(document).on('change', '#replacement_image', function(event){
+  var file = event.target.files[0];
+  if(file) {
+   // Validate file type
+   var fileName = file.name;
+   var fileExt = fileName.split('.').pop().toLowerCase();
+   if(['jpg', 'jpeg', 'png', 'gif', 'webp'].indexOf(fileExt) === -1) {
+    alert('Invalid file type. Please select a JPG, JPEG, PNG, GIF, or WebP file.');
+    $(this).val('');
+    $('#new_image_preview').hide();
+    return;
+   }
+   
+   // Validate file size (2MB)
+   if(file.size > 2000000) {
+    alert('File size too large. Please select a file smaller than 2MB.');
+    $(this).val('');
+    $('#new_image_preview').hide();
+    return;
+   }
+   
+   var reader = new FileReader();
+   reader.onload = function(e) {
+    $('#new_image_preview_img').attr('src', e.target.result);
+    $('#new_image_preview').show();
+   }
+   reader.readAsDataURL(file);
+  } else {
+   $('#new_image_preview').hide();
+  }
+ });
+ 
  $('#edit_image_form').on('submit', function(event){
   event.preventDefault();
   if($('#image_name').val() == '')
@@ -192,15 +252,26 @@ $(document).ready(function(){
   }
   else
   {
+   var formData = new FormData(this);
+   
    $.ajax({
     url:"update.php",
     method:"POST",
-    data:$('#edit_image_form').serialize(),
+    data: formData,
+    contentType: false,
+    cache: false,
+    processData: false,
     success:function(data)
     {
      $('#imageModal').modal('hide');
      load_image_data();
-     alert('Image Details updated');
+     $('#replacement_image').val(''); // Clear file input
+     $('#new_image_preview').hide(); // Hide preview
+     alert('Project updated successfully');
+    },
+    error:function()
+    {
+     alert('Error updating project. Please try again.');
     }
    });
   }
