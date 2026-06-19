@@ -1,5 +1,7 @@
 <?php
 //edit.php
+require_once('auth.php');
+require_admin_login_ajax();
 include('Dbconfig.php');
 
 $query = "

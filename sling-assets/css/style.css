@@ -661,6 +661,12 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 30px 0;
 }
 
+[class^="elfsight-app-"],
+[class^="elfsight-app-"] iframe {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
 #clients img {
   max-width: 100%;
   /* opacity: 0.5; */

@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/sling-assets/admin-panel/auth.php';
+require_admin_login();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

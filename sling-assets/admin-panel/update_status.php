@@ -1,4 +1,6 @@
 <?php
+require_once 'auth.php';
+require_admin_login_ajax();
 require_once 'Dbconfig.php';
 header('Content-Type: application/json');
 

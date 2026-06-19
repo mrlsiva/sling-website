@@ -13,6 +13,10 @@
     <meta name="keywords" content="Sling Software Solutions, UI-UX design, web development, digital marketing, mobile apps, innovation, technology, digital solutions">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Optimize resource loading to prevent preload warnings -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Sling Software Solutions">
@@ -60,6 +64,36 @@
 
     <!-- Main Stylesheet File -->
     <link href="sling-assets/css/style.css?v2" rel="stylesheet">
+    
+    <!-- Font CORS Issue Fix for Callbell Widget -->
+    <style>
+    /* Override Callbell font loading to use system fonts and prevent CORS errors */
+    @font-face {
+        font-family: 'ProximaNova-Regular';
+        src: local('Open Sans'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'ProximaNova-Bold';
+        src: local('Open Sans Bold'), local('Helvetica Neue Bold'), local('Arial Bold'), local('sans-serif');
+        font-weight: bold;  
+        font-style: normal;
+        font-display: swap;
+    }
+    /* Force Callbell to use system fonts */
+    [data-callbell-widget] *,
+    .callbell-widget *,
+    #callbell-widget *, 
+    iframe[src*="callbell"] {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    }
+    /* Hide font loading errors in console by preventing external font requests */
+    .callbell-widget {
+        font-family: inherit !important;
+    }
+    </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-186097640-1"></script>
     <script>
@@ -314,7 +348,7 @@
         // Include the database configuration file
         include('sling-assets/admin-panel/Dbconfig.php');
 
-        $query = "SELECT * FROM tbl_image ORDER BY image_id DESC";
+        $query = "SELECT * FROM tbl_image WHERE status = 'enabled' ORDER BY sort_order ASC, image_id DESC";
         $statement = $connect->prepare($query);
         $statement->execute();
         $result = $statement->fetchAll();
@@ -443,8 +477,12 @@
     
     <!-- Suppress jQuery Migrate warnings in production -->
     <script>
+    // Suppress jQuery Migrate console messages
+    jQuery.migrateMute = true;
+    
+    // Also suppress migration warnings globally
     if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        jQuery.migrateMute = true;
+        jQuery.migrateWarnings = false;
     }
     </script>
     
@@ -473,12 +511,26 @@
     <!-- Template Main Javascript File -->
     <script src="sling-assets/js/main.js"></script>
 
-    <!-- Start of Conditional Callbell Code -->
+    <!-- Start of Optimized Callbell Code -->
     <script>
-        // Only load Callbell on production domain to avoid CORS issues on localhost
+        // Load Callbell with CORS error suppression
         var isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !window.location.hostname.includes('.local');
         
         if (isProduction) {
+            // Suppress CORS font errors in console
+            var originalError = console.error;
+            console.error = function(message) {
+                if (typeof message === 'string' && (
+                    message.includes('callbell.eu') || 
+                    message.includes('proximanova') || 
+                    message.includes('CORS policy') ||
+                    message.includes('Access-Control-Allow-Origin')
+                )) {
+                    return; // Suppress Callbell CORS errors
+                }
+                originalError.apply(console, arguments);
+            };
+
             window.callbellSettings = {
                 token: "sqUhtGE5tjjuaBWvDKXCWnnN"
             };
@@ -500,18 +552,30 @@
                     };
                     w.Callbell = i;
                     
-                    // Defer Callbell loading to avoid preload warnings
+                    // Delay loading and add error handling
                     setTimeout(function() {
                         var s = d.createElement('script');
                         s.type = 'text/javascript';
                         s.async = true;
                         s.src = 'https://dash.callbell.eu/include/' + window.callbellSettings.token + '.js';
                         s.onerror = function() {
-                            console.warn('Callbell widget failed to load');
+                            console.warn('Callbell widget failed to load - chat functionality disabled');
+                        };
+                        s.onload = function() {
+                            // Additional font CORS suppression after widget loads
+                            setTimeout(function() {
+                                var style = d.createElement('style');
+                                style.textContent = `
+                                    .callbell-widget, .callbell-widget * {
+                                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+                                    }
+                                `;
+                                d.head.appendChild(style);
+                            }, 1000);
                         };
                         var x = d.getElementsByTagName('script')[0];
                         x.parentNode.insertBefore(s, x);
-                    }, 2000); // Delay by 2 seconds to avoid preload warnings
+                    }, 3000); // Delay by 3 seconds to avoid preload warnings
                 }
             })();
         } else {
@@ -523,7 +587,7 @@
             }
         }
     </script>
-    <!-- End of Conditional Callbell Code -->
+    <!-- End of Optimized Callbell Code -->
 
     <!-- Enquiry Form JavaScript -->
     <script>

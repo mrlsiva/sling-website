@@ -1,6 +1,8 @@
 <?php
 //delete.php
 
+require_once('auth.php');
+require_admin_login_ajax();
 include('Dbconfig.php');
 
 if(isset($_POST["image_id"]))
