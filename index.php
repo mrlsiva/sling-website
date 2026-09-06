@@ -135,7 +135,7 @@
 
             <div id="logo" class="pull-left">
                 <h1>
-                    <a href="#body" class="scrollto"><img src="sling-assets/img/logo.svg" class="logo_img" alt="" /></a>
+                    <a href="#body" class="scrollto"><img src="sling-assets/img/logo.png" class="logo_img" alt="" /></a>
                 </h1>
                 <!--        <h1><a href="#body" class="scrollto">Sling<span>Groups</span></a></h1>-->
                 <!-- Uncomment below if you prefer to use an image logo -->
@@ -158,7 +158,7 @@
               <li><a href="#">Drop Down 5</a></li>
             </ul>
           </li> -->
-                    <li><a href="#contact">Contact</a></li>
+                    <li><button type="button" class="nav-cta" data-bs-toggle="modal" data-bs-target="#enquiryModal">Enquiry</button></li>
                 </ul>
             </nav>
             <!-- #nav-menu-container -->
@@ -171,72 +171,48 @@
   ============================-->
     <section id="intro-container">
         <div id="intro">
-            <div class="intro-content">
-                <!--      <h2>Making <span>your ideas</span><br>happen!</h2>-->
-                <!--      <h2>We Just <span>Make Your Dream</span><br>Real!</h2>-->
-                <h2>We Make Your <span>e - dreams</span><br>Live!</h2>
-                <div>
-                    <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a>
-            <a href="#portfolio" class="btn-projects scrollto">Our Projects</a> -->
-                    <!-- <a target="_blank" class="btn-get-started scrollto" href="https://api.whatsapp.com/send?phone=+917402064183" alt="whatsapp icon"><i class="fa fa-whatsapp" aria-hidden="true"></i> Suguna</a>
-                    <a target="_blank" class="btn-get-started scrollto" href="https://api.whatsapp.com/send?phone=+919994090424" alt="whatsapp icon"><i class="fa fa-whatsapp" aria-hidden="true"> Siva</i></a> -->
-                </div>
-            </div>
+            <div class="container">
+                <div class="intro-inner">
+                    <div class="intro-content">
+                        <span class="eyebrow">Sling Software Solutions</span>
+                        <h2>We Make Your <span>e - dreams</span><br>Live!</h2>
+                        <p class="intro-lede">Delivering cutting-edge IT solutions since 2020 &mdash; UI-UX design, web development, digital marketing, and mobile apps.</p>
+                        <div class="intro-badges">
+                            <span class="badge-pill">Est. 2020</span>
+                            <span class="badge-pill">4 Core Services</span>
+                        </div>
+                        <div class="intro-cta">
+                            <button type="button" class="btn-flat-primary" data-bs-toggle="modal" data-bs-target="#enquiryModal">Get In Touch</button>
+                            <a href="#services" class="btn-watch scrollto">
+                                <span class="btn-watch-icon"><i class="fa fa-play"></i></span>
+                                Our Services
+                            </a>
+                        </div>
+                    </div>
 
-            <div id="intro-carousel" class="owl-carousel">
-                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/1.jpg');"></div>
-                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/2.jpg');"></div>
-                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/3.jpg');"></div>
-                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/4.jpg');"></div>
-                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/5.jpg');"></div>
-            </div>
-        </div>
-        
-        <!-- Enquiry Form Section -->
-        <div id="enquiry-form">
-            <div class="enquiry-container">
-                <h3>Professional Enquiry</h3>
-                <p class="enquiry-subtitle">Get In Touch With Our Experts</p>
-                
-                <form id="enquiryForm" class="enquiry-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                    <div class="intro-visual">
+                        <div class="about-img-frame">
+                            <img src="sling-assets/img/banner.png" class="img-fluid" alt="">
+                            <!-- <span class="badge-pill about-badge">Est. 2020</span> -->
+                        </div>
+                        <!-- <span class="intro-blob intro-blob-1"></span>
+                        <span class="intro-blob intro-blob-2"></span>
+                        <div class="intro-visual-frame">
+                            <div id="intro-carousel" class="owl-carousel">
+                                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/1.jpg');"></div>
+                                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/2.jpg');"></div>
+                                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/3.jpg');"></div>
+                                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/4.jpg');"></div>
+                                <div class="item" style="background-image: url('sling-assets/img/intro-carousel/5.jpg');"></div>
+                            </div>
+                        </div>
+                        <svg class="intro-visual-deco" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M5 55 L5 40 L20 40" stroke="#1b1e2c" stroke-width="2"/>
+                            <path d="M20 60 L20 45 L35 45" stroke="#1b1e2c" stroke-width="2"/>
+                            <path d="M35 65 L35 50 L50 50" stroke="#1b1e2c" stroke-width="2"/>
+                        </svg> -->
                     </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Work Email *" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" id="phone" name="phone" placeholder="Phone Number *" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" id="company" name="company" placeholder="Company Name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <select id="service" name="service" required>
-                            <option value="">Select Service *</option>
-                            <option value="UI-UX Design">UI-UX Design</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="Mobile Apps">Mobile Apps</option>
-                            <option value="E-commerce">E-commerce</option>
-                            <option value="Custom Software">Custom Software</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Project Details *" rows="3" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        <i class="fa fa-paper-plane"></i> Send Enquiry
-                    </button>
-                </form>
-               
+                </div>
             </div>
         </div>
     </section>
@@ -250,23 +226,34 @@
         <section id="about" class="wow fadeInUp">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 about-img">
-                        <img src="sling-assets/img/about-img.jpg" alt="">
+                    <div class="col-lg-5 about-img">
+                        <div class="about-img-frame">
+                            <img src="sling-assets/img/about-us.png" alt="">
+                            <!-- <span class="badge-pill about-badge">Est. 2020</span> -->
+                        </div>
                     </div>
 
-                    <div class="col-lg-6 content">
-                        <h2>About Sling Software Solutions</h2>
-                        <h3>
-                            <ul>
-                                <li><i class="ion-android-checkmark-circle"></i>Sling Software Solutions is a leading and globally accepted IT solution provider, delivering cutting-edge solutions since 2020.</li>
-                                <li><i class="ion-android-checkmark-circle"></i> Founded with a robust team in technical and management domains, we bring expertise and innovation to every project.</li>
-                                <li><i class="ion-android-checkmark-circle"></i> Our primary motive is to understand client requirements thoroughly and provide tailored solutions, ensuring utmost client satisfaction.</li>
-                                <!-- <li><i class="ion-android-checkmark-circle"></i> Founder: <strong>Siva P</strong>  </li>
-                                <li><i class="ion-android-checkmark-circle"></i> Co-founder: <strong>Sugunadevi P</strong>  </li>
-                                <li><i class="ion-android-checkmark-circle"></i> Human Resource Management : <strong>Arun Adhavan P </strong> </li> -->
+                    <div class="col-lg-7 content">
+                        <span class="eyebrow">About Us</span>
+                        <h2>Delivering <span>Smart IT Solutions</span> for Your Business</h2>
+                        <p class="about-lede">Since 2020, Sling Software Solutions has helped businesses across industries with UI-UX design, web development, digital marketing, and mobile apps &mdash; pairing technical expertise with a genuine focus on client success.</p>
 
-                            </ul>
+                        <div class="about-timeline">
+                            <div class="about-timeline-item">
+                                <span class="about-timeline-dot"></span>
+                                <p>Sling Software Solutions is a leading and globally accepted IT solution provider, delivering cutting-edge solutions since 2020.</p>
+                            </div>
+                            <div class="about-timeline-item">
+                                <span class="about-timeline-dot"></span>
+                                <p>Founded with a robust team in technical and management domains, we bring expertise and innovation to every project.</p>
+                            </div>
+                            <div class="about-timeline-item">
+                                <span class="about-timeline-dot"></span>
+                                <p>Our primary motive is to understand client requirements thoroughly and provide tailored solutions, ensuring utmost client satisfaction.</p>
+                            </div>
+                        </div>
 
+                        <button type="button" class="btn-flat-primary" data-bs-toggle="modal" data-bs-target="#enquiryModal">Let's Start</button>
                     </div>
                 </div>
 
@@ -280,49 +267,70 @@
         <section id="services">
             <div class="container">
                 <div class="section-header">
+                    <span class="eyebrow">What We Do</span>
                     <h2>Services</h2>
                     <!-- <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum
                         fore
                     </p> -->
                 </div>
 
-                <div class="row">
+                <div class="row g-4 services-grid">
 
-                    <div class="col-lg-6">
-                        <div class="box wow fadeInLeft">
-                            <div class="icon"><i class="fa fa-vcard-o"></i></div>
-                            <h4 class="title"><a href="">UI-UX DESIGN</a></h4>
-                            <!-- <p class="description">Logo Design, All types of posters & Banners, Social network banner design, Whatsapp invitation, visting cards, Brouchers, wedding cards, Id Card designs, etc.</p> -->
-                            
-                            <p class="description">Transforming visions into digital masterpieces with top-notch tools: Figma, Photoshop, Adobe XD, Illustrator, CorelDRAW, and more. At Sling Software Solutions, precision and style converge to create impactful designs for your brand.</p>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service-card wow fadeInUp">
+                            <div class="service-icon"><i class="fa fa-vcard-o"></i></div>
+                            <h4 class="service-title">UI-UX Design</h4>
+                            <p class="service-desc">Transforming visions into digital masterpieces with top-notch tools: Figma, Photoshop, Adobe XD, Illustrator, CorelDRAW, and more &mdash; precision and style converge to create impactful designs for your brand.</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="box wow fadeInRight">
-                            <div class="icon"><i class="fa fa-cloud"></i></div>
-                            <h4 class="title"><a href="">WEB DEVELOPMENT</a></h4>
-                            <p class="description">We specialize in PHP, .Net, and Node technologies. From secure web hosting to crafting dynamic web applications, including E-Commerce, Billing Software, and Blog Websites, we bring your digital vision to life at Sling Software Solutions.</p>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service-card wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-icon"><i class="fa fa-cloud"></i></div>
+                            <h4 class="service-title">Web Development</h4>
+                            <p class="service-desc">We specialize in PHP, .Net, and Node technologies. From secure web hosting to crafting dynamic web applications, including E-Commerce, Billing Software, and Blog Websites, we bring your digital vision to life.</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="box wow fadeInLeft" data-wow-delay="0.2s">
-                            <div class="icon"><i class="fa fa-share-alt"></i></div>
-                            <h4 class="title"><a href="">DIGITAL MARKETTING</a></h4>
-                            <p class="description">Amplify your brand's digital footprint with our dynamic marketing strategies. From SEO mastery to impactful social campaigns, we drive engagement and boost visibility. Transform your online presence with Sling Software Solutions.</p>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service-card wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="service-icon"><i class="fa fa-share-alt"></i></div>
+                            <h4 class="service-title">Digital Marketing</h4>
+                            <p class="service-desc">Amplify your brand's digital footprint with our dynamic marketing strategies. From SEO mastery to impactful social campaigns, we drive engagement and boost visibility online.</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="box wow fadeInRight" data-wow-delay="0.2s">
-                            <div class="icon"><i class="fa fa-support"></i></div>
-                            <h4 class="title"><a href="">Mobile Apps</a></h4>
-                            <p class="description">Crafting seamless experiences for Android and iPhone users. Our mobile apps marry innovation and functionality, ensuring users engage effortlessly. Elevate your digital presence with our expert development at Sling Software Solutions.</p>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service-card wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="service-icon"><i class="fa fa-support"></i></div>
+                            <h4 class="service-title">Mobile Apps</h4>
+                            <p class="service-desc">Crafting seamless experiences for Android and iPhone users. Our mobile apps marry innovation and functionality, ensuring users engage effortlessly with expert development.</p>
                         </div>
                     </div>
 
+                </div>
 
+                <div class="how-it-works">
+                    <div class="how-step">
+                        <span class="how-step-number">1</span>
+                        <h5>Discover</h5>
+                        <p>We learn your goals and requirements.</p>
+                    </div>
+                    <div class="how-step">
+                        <span class="how-step-number">2</span>
+                        <h5>Design</h5>
+                        <p>We map out the UX and visual direction.</p>
+                    </div>
+                    <div class="how-step">
+                        <span class="how-step-number">3</span>
+                        <h5>Develop</h5>
+                        <p>We build and test the solution end to end.</p>
+                    </div>
+                    <div class="how-step">
+                        <span class="how-step-number">4</span>
+                        <h5>Launch</h5>
+                        <p>We deploy and support you post-launch.</p>
+                    </div>
                 </div>
 
             </div>
@@ -335,14 +343,9 @@
         <section id="clients" class="wow fadeInUp">
             <div class="container">
                 <div class="section-header">
+                    <span class="eyebrow">Our Clients</span>
                     <h2>Clients</h2>
-                    <p>
-                        At Sling Software Solutions, we are privileged to collaborate with a diverse range of clients across various 
-                        industries. Our client portfolio reflects our commitment to delivering tailored solutions that meet unique 
-                        challenges and drive success.
-                    </p>
-
-                    <p> We always value our relationship with our clients, whether it a new startup or established clients, we ensure our clients e - dreams are accomplished.</p>
+                    <p>At Sling Software Solutions, we're privileged to collaborate with a diverse range of clients across industries &mdash; from new startups to established brands &mdash; delivering tailored solutions that meet unique challenges and drive success.</p>
                 </div>
                 <?php
         // Include the database configuration file
@@ -356,54 +359,63 @@
         $output = '';
 
         if ($number_of_rows > 0) {
-            $count = 0;
-            $output .= '<section><div class="container"><div class="row">';
-            
+            $output .= '<div class="clients-grid">';
+
             foreach ($result as $row) {
-                $count++;
-                $imageDescriptionUrl = $row["image_description"];
+                $imageDescriptionUrl = htmlspecialchars($row["image_description"], ENT_QUOTES, 'UTF-8');
+                $imageName = htmlspecialchars($row["image_name"], ENT_QUOTES, 'UTF-8');
 
                 $output .= '
-                    <a href="' . $imageDescriptionUrl . '" target="_blank" rel="noopener noreferrer" class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 client-logo container-hover">
-                        <img src="sling-assets/admin-panel/files/' . $row["image_name"] . '" class="menu-img slideInUp" alt="" loading="lazy">
-                        <div class="middle">
-                            <div class="text"><i class="fa fa-link" aria-hidden="true"></i></div>
-                        </div>
+                    <a href="' . $imageDescriptionUrl . '" target="_blank" rel="noopener noreferrer" class="client-card">
+                        <img src="sling-assets/admin-panel/files/' . $imageName . '" alt="" loading="lazy">
+                        <span class="client-card-overlay"><i class="fa fa-link" aria-hidden="true"></i></span>
                     </a>
                 ';
-
-                if ($count % 5 == 0) {
-                    $output .= '</div></div></section><section><div class="container"><div class="row">';
-                }
             }
 
-            $output .= '</div></div></section>';
+            $output .= '</div>';
         } else {
             $output .= '<p>No Data Found</p>';
         }
 
         echo $output;
     ?>
+            </div>
         </section>
-      <section>  
-<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-<div class="elfsight-app-ee554d8c-446f-4e27-8035-64990735ffe5" data-elfsight-app-lazy></div>
+        <!-- #clients -->
 
-</section>
+        <!--==========================
+      Testimonials Section
+    ============================-->
+        <section id="testimonials" class="wow fadeInUp">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Testimonials</span>
+                    <h2>What Our Customers Say</h2>
+                    <p>Don't just take our word for it &mdash; here's what businesses we've partnered with have to say about working with Sling Software Solutions.</p>
+                </div>
+                <div class="testimonials-widget">
+                    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+                    <div class="elfsight-app-ee554d8c-446f-4e27-8035-64990735ffe5" data-elfsight-app-lazy></div>
+                </div>
+            </div>
+        </section>
+        <!-- #testimonials -->
+
         <!--==========================
       Contact Section
     ============================-->
         <section id="contact" class="wow fadeInUp">
             <div class="container">
                 <div class="section-header">
+                    <span class="eyebrow">Get In Touch</span>
                     <h2>Contact Us</h2>
                     <!-- <p>Fillup Your requirements we will call back to you</p> -->
                 </div>
 
                 <div class="row contact-info">
 
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="contact-phone">
                             <i class="ion-ios-telephone-outline"></i>
                             <h3>Phone Number</h3>
@@ -411,11 +423,23 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="contact-email">
                             <i class="ion-ios-email-outline"></i>
                             <h3>Email</h3>
                             <p><a href="mailto:slinggroups@gmail.com">slinggroups@gmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-social">
+                            <i class="ion-ios-people-outline"></i>
+                            <h3>Follow Us</h3>
+                            <div class="social-icons-row">
+                                <a href="https://twitter.com/SlingSoftware" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/pg/Slingsoftwaresolutions" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
 
@@ -462,12 +486,70 @@
     <footer id="footer">
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong> Sling Groups</strong>. All Rights Reserved
+                &copy; <span id="copyright-year"></span> Copyright <strong> Sling Groups</strong>. All Rights Reserved
             </div>
 
         </div>
     </footer>
     <!-- #footer -->
+
+    <script>
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Enquiry Modal -->
+    <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enquiryModalLabel">Professional Enquiry</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="enquiry-subtitle">Get In Touch With Our Experts</p>
+
+                    <form id="enquiryForm" class="enquiry-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name *" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Work Email *" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number *" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" placeholder="Company Name">
+                        </div>
+
+                        <div class="form-group">
+                            <select id="service" name="service" required>
+                                <option value="">Select Service *</option>
+                                <option value="UI-UX Design">UI-UX Design</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Mobile Apps">Mobile Apps</option>
+                                <option value="E-commerce">E-commerce</option>
+                                <option value="Custom Software">Custom Software</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Project Details *" rows="3" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fa fa-paper-plane"></i> Send Enquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -592,15 +674,25 @@
     <!-- Enquiry Form JavaScript -->
     <script>
     $(document).ready(function() {
+        // Close the mobile nav drawer whenever the enquiry modal is opened,
+        // regardless of which trigger (hero button or nav pill) opened it.
+        $('#enquiryModal').on('show.bs.modal', function() {
+            if ($('body').hasClass('mobile-nav-active')) {
+                $('body').removeClass('mobile-nav-active');
+                $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
+                $('#mobile-body-overly').fadeOut();
+            }
+        });
+
         $('#enquiryForm').on('submit', function(e) {
             e.preventDefault();
-            
+
             var submitBtn = $(this).find('button[type="submit"]');
             var originalBtnText = submitBtn.html();
-            
+
             // Show loading state
             submitBtn.html('<i class="fa fa-spinner fa-spin"></i> Sending...').prop('disabled', true);
-            
+
             $.ajax({
                 url: 'sling-assets/admin-panel/enquiry_handler.php',
                 type: 'POST',
@@ -610,8 +702,10 @@
                     if (response.success) {
                         // Show success message
                         alert('Thank you for your enquiry! We will get back to you soon.');
-                        // Reset form
+                        // Reset form and close the modal
                         $('#enquiryForm')[0].reset();
+                        var modalInstance = bootstrap.Modal.getInstance(document.getElementById('enquiryModal'));
+                        if (modalInstance) modalInstance.hide();
                     } else {
                         alert('Error: ' + response.message);
                     }

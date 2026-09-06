@@ -18,33 +18,33 @@ require_admin_login();
     <style>
         body {
             font-family: "Open Sans", sans-serif;
-            background: #f8f9fa;
+            background: #fffdf8;
         }
-        
+
         .header {
-            background: linear-gradient(135deg, #19ad9f 0%, #17a085 100%);
+            background: #1b1e2c;
             color: white;
             padding: 2rem 0;
             margin-bottom: 2rem;
+            border-bottom: 3px solid #f8931d;
         }
-        
+
         .enquiry-card {
             background: white;
+            border: 1px solid #e6e6e2;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 20px;
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: border-color 0.2s;
         }
-        
+
         .enquiry-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            border-color: #19ad9f;
         }
-        
+
         .enquiry-header {
-            background: #f8931d;
-            color: white;
+            background: #fff;
+            color: #1b1e2c;
             padding: 15px 20px;
             border-bottom: 1px solid #eee;
         }
@@ -73,18 +73,21 @@ require_admin_login();
         }
         
         .status-new {
-            background: #e3f2fd;
-            color: #1976d2;
+            background: #fdf1e2;
+            color: #f8931d;
+            border: 1px solid #f8931d;
         }
-        
+
         .status-contacted {
-            background: #fff3e0;
-            color: #f57c00;
+            background: #e6f6f4;
+            color: #19ad9f;
+            border: 1px solid #19ad9f;
         }
-        
+
         .status-closed {
-            background: #e8f5e8;
-            color: #388e3c;
+            background: #eceded;
+            color: #1b1e2c;
+            border: 1px solid #1b1e2c;
         }
         
         .action-buttons .btn {
@@ -129,10 +132,10 @@ require_admin_login();
         
         .stats-card {
             background: white;
+            border: 1px solid #e6e6e2;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .stats-number {

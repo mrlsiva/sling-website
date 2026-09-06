@@ -18,28 +18,101 @@ require_admin_login();
     <link href="sling-assets/admin-panel/favicon/apple-touch-icon.png" rel="apple-touch-icon">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <style type="text/css">
+    body{
+      background: #fffdf8;
+      font-family: "Open Sans", Arial, sans-serif;
+    }
     #image_table{
-      border: 0px solid blue;
+      background: #fff;
+      border: 1px solid #e6e6e2;
+      border-radius: 8px;
       padding: 10px;
     }
     .drag-handle{
       cursor: move;
+      color: #999;
     }
     #image_table tbody tr.ui-sortable-helper{
       background: #f5f5f5;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
     .header-row{
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #f8931d;
+    }
+    .header-row h3{
+      color: #1b1e2c;
+      font-weight: 700;
+      margin: 0;
     }
     .header-actions .btn{
       margin-left: 8px;
+    }
+
+    /* Brand button palette (flat, no gradients) */
+    .btn-primary{
+      background: #f8931d;
+      border-color: #f8931d;
+      color: #fff;
+    }
+    .btn-primary:hover, .btn-primary:focus{
+      background: #e67e22;
+      border-color: #e67e22;
+      color: #fff;
+    }
+    .btn-info, .btn-success{
+      background: #19ad9f;
+      border-color: #19ad9f;
+      color: #fff;
+    }
+    .btn-info:hover, .btn-info:focus,
+    .btn-success:hover, .btn-success:focus{
+      background: #158f83;
+      border-color: #158f83;
+      color: #fff;
+    }
+    .btn-warning{
+      background: #fff;
+      border: 1px solid #1b1e2c;
+      color: #1b1e2c;
+    }
+    .btn-warning:hover, .btn-warning:focus{
+      background: #1b1e2c;
+      color: #fff;
+    }
+    .btn-danger{
+      background: #fff;
+      border: 1px solid #d9534f;
+      color: #d9534f;
+    }
+    .btn-danger:hover, .btn-danger:focus{
+      background: #d9534f;
+      color: #fff;
+    }
+    .btn-default{
+      background: #fff;
+      border: 1px solid #ccc;
+      color: #1b1e2c;
+    }
+    .btn-default:hover, .btn-default:focus{
+      border-color: #19ad9f;
+      color: #19ad9f;
+    }
+    .btn-xs{
+      padding: 1px 5px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-radius: 3px;
+    }
+    .modal-title{
+      color: #1b1e2c;
     }
   </style>
  </head>
@@ -50,19 +123,19 @@ require_admin_login();
      <h3>My Works</h3>
      <div class="header-actions">
        <button type="button" class="btn btn-primary" id="add_btn" title="Add">
-         <i class="glyphicon glyphicon-plus"></i>
+         <i class="fa fa-plus"></i>
        </button>
        <a href="../../customer-enquiry.php" class="btn btn-success" title="View Customer Enquiries">
-         <i class="glyphicon glyphicon-envelope"></i>
+         <i class="fa fa-envelope"></i>
        </a>
        <a href="logout.php" class="btn btn-default" title="Logout">
-         <i class="glyphicon glyphicon-log-out"></i>
+         <i class="fa fa-sign-out"></i>
        </a>
      </div>
    </div>
    <br />
    <div class="table-responsive" id="image_table">
-    
+
    </div>
   </div>
  </body>
@@ -72,8 +145,8 @@ require_admin_login();
   <div class="modal-content">
    <form method="POST" id="add_image_form" enctype="multipart/form-data">
     <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">&times;</button>
      <h4 class="modal-title">Add Project</h4>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
      <div class="form-group">
@@ -99,7 +172,7 @@ require_admin_login();
     </div>
     <div class="modal-footer">
      <input type="submit" name="submit" class="btn btn-info" value="Add" />
-     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
     </div>
    </form>
   </div>
@@ -110,8 +183,8 @@ require_admin_login();
   <div class="modal-content">
    <form method="POST" id="edit_image_form" enctype="multipart/form-data">
     <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">&times;</button>
      <h4 class="modal-title">Edit Project</h4>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
      <div class="form-group">
@@ -152,7 +225,7 @@ require_admin_login();
     <div class="modal-footer">
      <input type="hidden" name="image_id" id="image_id" value="" />
      <input type="submit" name="submit" class="btn btn-info" value="save" />
-     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
     </div>
    </form>
   </div>
@@ -191,10 +264,17 @@ $(document).ready(function(){
    }
   });
  }
+ function showModal(id){
+  bootstrap.Modal.getOrCreateInstance(document.getElementById(id)).show();
+ }
+ function hideModal(id){
+  var instance = bootstrap.Modal.getInstance(document.getElementById(id));
+  if(instance) instance.hide();
+ }
  $('#add_btn').on('click', function(){
   $('#add_image_form')[0].reset();
   $('#add_image_preview').hide();
-  $('#addImageModal').modal('show');
+  showModal('addImageModal');
  });
  $(document).on('change', '#add_image', function(event){
   var file = event.target.files[0];
@@ -239,7 +319,7 @@ $(document).ready(function(){
    processData: false,
    success:function(data)
    {
-    $('#addImageModal').modal('hide');
+    hideModal('addImageModal');
     load_image_data();
     alert('Project added successfully');
    },
@@ -258,7 +338,7 @@ $(document).ready(function(){
    dataType:"json",
    success:function(data)
    {
-    $('#imageModal').modal('show');
+    showModal('imageModal');
     $('#image_id').val(image_id);
     $('#image_name').val(data.image_name);
     $('#image_description').val(data.image_description);
@@ -366,7 +446,7 @@ $(document).ready(function(){
     processData: false,
     success:function(data)
     {
-     $('#imageModal').modal('hide');
+     hideModal('imageModal');
      load_image_data();
      $('#replacement_image').val(''); // Clear file input
      $('#new_image_preview').hide(); // Hide preview

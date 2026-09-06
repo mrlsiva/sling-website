@@ -37,7 +37,7 @@ if($number_of_rows > 0)
   $is_enabled = $row["status"] === 'enabled';
   $output .= '
   <tr data-image_id="'.$row["image_id"].'">
-   <td class="drag-handle text-center"><i class="glyphicon glyphicon-resize-vertical"></i></td>
+   <td class="drag-handle text-center"><i class="fa fa-arrows-v"></i></td>
    <td class="sr-no">'.$count.'</td>
    <td><img src="'.$files_base.$row["image_name"].'" class="img-thumbnail" width="100" height="100" /></td>
    <td>'.$row["ProductName"].'</td>
