@@ -1053,6 +1053,17 @@ body.mobile-nav-active #mobile-nav-toggle {
   border: 1px solid #e6e6e2;
   border-radius: 8px;
   padding: 30px 15px;
+  flex: 1;
+}
+
+/* Equal-height contact boxes */
+#contact .row.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#contact .row.contact-info > [class*="col-"] {
+  display: flex;
 }
 
 #contact .social-icons-row {

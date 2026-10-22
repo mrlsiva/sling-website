@@ -367,7 +367,7 @@
 
                 $output .= '
                     <a href="' . $imageDescriptionUrl . '" target="_blank" rel="noopener noreferrer" class="client-card">
-                        <img src="sling-assets/admin-panel/files/' . $imageName . '" alt="" loading="lazy">
+                        <img src="https://slinggroups.in/sling-assets/admin-panel/files/' . $imageName . '" alt="" loading="lazy">
                         <span class="client-card-overlay"><i class="fa fa-link" aria-hidden="true"></i></span>
                     </a>
                 ';
